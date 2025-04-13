@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your GitHub Pages Site</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bouncing DVD Logo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    #dvd {
+      position: absolute;
+      width: 150px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Pages Site!</h1>
-    <p>This is a simple website hosted with GitHub Pages.</p>
-    <script src="scripts.js"></script>
+  <img id="dvd" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg" alt="DVD Logo" />
+
+  <script>
+    const dvd = document.getElementById('dvd');
+    let x = 100;
+    let y = 100;
+    let dx = 2;
+    let dy = 2;
+    const logoWidth = 150;
+    const logoHeight = 75;
+
+    function animate() {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      x += dx;
+      y += dy;
+
+      if (x + logoWidth >= screenWidth || x <= 0) {
+        dx *= -1;
+      }
+      if (y + logoHeight >= screenHeight || y <= 0) {
+        dy *= -1;
+      }
+
+      dvd.style.left = x + 'px';
+      dvd.style.top = y + 'px';
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
