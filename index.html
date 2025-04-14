@@ -1,85 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bouncing DVD Logo with Speed Control</title>
+  <meta charset="UTF-8">
+  <title>ROG Pixelart Cyberpunk by T3chG0d1</title>
+  <script>
+    document.addEventListener("mousemove", function(event) {
+      const topGif = document.querySelector(".top-gif");
+      const radius = 150;
+      const x = event.clientX;
+      const y = event.clientY;
+      topGif.style.clipPath = `circle(${radius}px at ${x}px ${y}px)`;
+    });
+  </script>
   <style>
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       overflow: hidden;
-      background-color: black;
     }
 
-    #dvd {
+    .gif-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .gif-container img {
       position: absolute;
-      width: 150px;
-      height: auto;
-      filter: invert(1);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    #controls {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px 20px;
-      border-radius: 12px;
-      color: white;
-      font-family: sans-serif;
-      transition: opacity 0.3s ease;
+    .top-gif {
+      z-index: 2;
+      pointer-events: none;
+      transition: clip-path 0.1s ease;
     }
 
-    #speedSlider {
-      width: 200px;
+    .bottom-gif {
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <img id="dvd" src="https://upload.wikimedia.org/wikipedia/commons/9/9b/DVD_logo.svg" alt="DVD Logo" />
 
-  <div id="controls">
-    Speed: <input type="range" id="speedSlider" min="1" max="30" value="2" />
-  </div>
+<div class="gif-container">
+  <img src="pixel-jeff-clipa-s.gif" alt="Bottom GIF" class="bottom-gif">
+  <img src="pixel-jeff-clipc-s.gif" alt="Top GIF" class="top-gif">
+</div>
 
-  <script>
-    const dvd = document.getElementById('dvd');
-    const speedSlider = document.getElementById('speedSlider');
-    const controls = document.getElementById('controls');
-
-    let x = 100;
-    let y = 100;
-    let dx = 2;
-    let dy = 2;
-    const logoWidth = 150;
-    const logoHeight = 75;
-
-    function animate() {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-
-      const speed = parseFloat(speedSlider.value);
-      dx = Math.sign(dx) * speed;
-      dy = Math.sign(dy) * speed;
-
-      x += dx;
-      y += dy;
-
-      if (x + logoWidth >= screenWidth || x <= 0) {
-        dx *= -1;
-      }
-      if (y + logoHeight >= screenHeight || y <= 0) {
-        dy *= -1;
-      }
-
-      dvd.style.left = x + 'px';
-      dvd.style.top = y + 'px';
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 </body>
 </html>
