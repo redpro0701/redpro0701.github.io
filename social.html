@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RedPro0701 Social Media</title>
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+
+
+<body>
+    <main id="screen">
+        <div id="links">
+            <a class="link back" href="/">BACK TO HOME</a>
+            <br>
+            <a class="link" href="https://youtube.com/@RedPro0701" target="_blank">YouTube</a>
+            <a class="link" href="https://twitch.com/RedPro0701" target="_blank">Twitch</a>
+            <a class="link" href="https://twitter.com/Red_Pro0701" target="_blank">Twitter</a>
+            <a class="link" href="https://www.reddit.com/r/juxtopposed/" target="_blank">Reddit</a>
+            <a class="link" href="https://codepen.com/juxtopposed" target="_blank">CodePen</a>
+            <a class="link" href="https://github.com/RedPro0701" target="_blank">GitHub</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const iconElement = document.getElementById('theme-icon');
+            const rootElement = document.documentElement;
+            iconElement.textContent = 'dark';
+
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll(".link");
+            let currentIndex = -1;
+
+            function updateHoverEffect() {
+                links.forEach((link, index) => {
+                    if (index === currentIndex) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") {
+                    currentIndex = (currentIndex + 1) % links.length;
+                    updateHoverEffect();
+                    event.preventDefault();
+                } else if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") {
+                    currentIndex = (currentIndex - 1 + links.length) % links.length;
+                    updateHoverEffect();
+                    event.preventDefault();
+                } else if (event.key === "Enter" && currentIndex >= 0) {
+                    links[currentIndex].click();
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

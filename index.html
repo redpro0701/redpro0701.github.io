@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RedPro0701</title>
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+    <main id="screen">
+        <div id="links">
+
+            <a class="link" href="/social.html">Social Links</a>
+            <a class="link" href="/sites.html">Sites & Projects</a>
+
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const iconElement = document.getElementById('theme-icon');
+            const rootElement = document.documentElement;
+
+            iconElement.textContent = dark;
+            const logo = document.getElementById('logo');
+            const screen = document.getElementById('screen');
+
+        });
+
+        function exit() {
+
+            window.open('', '_self').close()
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll(".link");
+            let currentIndex = -1;
+
+            function updateHoverEffect() {
+                links.forEach((link, index) => {
+                    if (index === currentIndex) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") {
+                    currentIndex = (currentIndex + 1) % links.length;
+                    updateHoverEffect();
+                    event.preventDefault();
+                } else if (event.key === "ArrowUp" || event.key.toLowerCase() === "w") {
+                    currentIndex = (currentIndex - 1 + links.length) % links.length;
+                    updateHoverEffect();
+                    event.preventDefault();
+                } else if (event.key === "Enter" && currentIndex >= 0) {
+                    links[currentIndex].click();
+                }
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>
