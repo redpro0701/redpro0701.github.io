@@ -16,7 +16,6 @@
         <div id="links">
             <a class="link back" href="/">BACK TO HOME</a>
             <br>
-            <a class="link" href="https://github.com/redpro0701/QuirkQuack" target="_blank">Quirk Quack (Rubber Ducky)</a
         </div>
     </main>
 
@@ -58,7 +57,20 @@
                 }
             });
         });
-
+        fetch("https://api.github.com/users/redpro0701/repos")
+            .then(response => response.json())
+            .then(repos => {
+                const linksContainer = document.getElementById("links");
+                repos.forEach(repo => {
+                    const a = document.createElement("a");
+                    a.className = "link";
+                    a.href = repo.html_url;
+                    a.target = "_blank";
+                    a.textContent = repo.name;
+                    linksContainer.appendChild(a);
+                });
+            })
+            .catch(error => console.error("Error fetching repos:", error));
 
 
     </script>
